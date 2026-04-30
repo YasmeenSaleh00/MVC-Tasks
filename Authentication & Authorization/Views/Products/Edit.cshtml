@@ -1,0 +1,176 @@
+﻿@model Practise_Database_Migration.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #FFF5F8; 
+        }
+
+        .edit-card {
+            border-radius: 25px;
+            border: none;
+            background: white;
+            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.1) !important;
+            overflow: hidden;
+        }
+
+        .edit-header {
+            background: linear-gradient(45deg, #D6336C, #FF4081);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .form-label-custom {
+            color: #D6336C;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-control-custom {
+            border-radius: 12px;
+            border: 1px solid #FFE4E1;
+            padding: 12px;
+            transition: all 0.3s;
+        }
+
+            .form-control-custom:focus {
+                border-color: #D6336C;
+                box-shadow: 0 0 0 0.2rem rgba(214, 51, 108, 0.1);
+            }
+
+        .btn-save-custom {
+            background: linear-gradient(45deg, #D6336C, #FF4081);
+            color: white !important;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 40px;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+            .btn-save-custom:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(214, 51, 108, 0.3);
+            }
+
+        .image-preview-container {
+            border: 2px dashed #FFB6C1;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+            background-color: #FFF9FA;
+        }
+    </style>
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card edit-card">
+                <div class="edit-header">
+                    <i class="bi bi-pencil-square fs-2 mb-2"></i>
+                    <h2 class="mb-0">Edit Product Details</h2>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Name" class="form-label-custom"></label>
+                                    <input asp-for="Name" class="form-control form-control-custom" placeholder="Enter product name" />
+                                    <span asp-validation-for="Name" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="Description" class="form-label-custom"></label>
+                                    <textarea asp-for="Description" class="form-control form-control-custom" rows="3"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger small"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label asp-for="Price" class="form-label-custom"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;">$</span>
+                                                <input asp-for="Price" class="form-control form-control-custom border-start-0" style="border-radius: 0 12px 12px 0;" />
+                                            </div>
+                                            <span asp-validation-for="Price" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label asp-for="StockQuantity" class="form-label-custom"></label>
+                                            <input asp-for="StockQuantity" class="form-control form-control-custom" />
+                                            <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="CategoryId" class="form-label-custom">Category</label>
+                                    <select asp-for="CategoryId" class="form-select form-control-custom" asp-items="ViewBag.CategoryId"></select>
+                                    <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BrandId" class="form-label-custom">Brand</label>
+                                    <select asp-for="BrandId" class="form-select form-control-custom" asp-items="ViewBag.BrandId"></select>
+                                    <span asp-validation-for="BrandId" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-4 text-center">
+                                    <label class="form-label d-block fw-bold text-secondary text-start">Current Category Image</label>
+                                    <div class="current-img-container">
+                                        <img src="~/images/Products/@Model.ImagePath" width="150" height="150" class="rounded shadow-sm" style="object-fit: cover;" alt="Current Image" />
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold text-secondary">Update Image (Optional)</label>
+                                    <input type="file" name="NewImagePath" class="form-control" accept="image/*" />
+                                    <div class="form-text mt-2"><i class="bi bi-info-circle me-1"></i> Leave empty to keep the current image.</div>
+                                </div>
+
+                                <div class="row d-none">
+                                    <input asp-for="CreationDate" />
+                                    <input asp-for="IsDeleted" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" style="opacity: 0.1;" />
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="Index" class="text-decoration-none text-muted">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                            <div style="width: 200px;">
+                                <button type="submit" class="btn btn-save-custom">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

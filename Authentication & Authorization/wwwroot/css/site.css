@@ -20,3 +20,60 @@ html {
 body {
   margin-bottom: 60px;
 }
+.navbar-custom {
+    padding: 10px 0;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px); 
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #D6336C, #FF4081);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-link-custom {
+    color: #555 !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+    .nav-link-custom:hover {
+        color: #D6336C !important;
+    }
+
+    .nav-link-custom::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #D6336C;
+        transition: width 0.3s ease;
+    }
+
+    .nav-link-custom:hover::after {
+        width: 100%;
+    }
+
+.btn-primary-custom {
+    background: linear-gradient(45deg, #D6336C, #FF4081);
+    color: white !important;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .btn-primary-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(214, 51, 108, 0.3);
+    }

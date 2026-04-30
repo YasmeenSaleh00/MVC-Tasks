@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Practise_Database_Migration;
+
 namespace Authentication___Authorization
 {
     public class Program
@@ -8,7 +11,8 @@ namespace Authentication___Authorization
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<SimpleEcommarceDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

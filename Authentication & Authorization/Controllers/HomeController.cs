@@ -1,8 +1,8 @@
-using Authentication___Authorization.Models;
+using Practise_Database_Migration.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Authentication___Authorization.Controllers
+namespace Practise_Database_Migration.Controllers
 {
     public class HomeController : Controller
     {

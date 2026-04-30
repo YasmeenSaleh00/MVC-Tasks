@@ -1,0 +1,178 @@
+﻿@model Practise_Database_Migration.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #FFF5F8; /* الخلفية الزهرية الناعمة */
+        }
+
+        .create-card {
+            border-radius: 25px;
+            border: none;
+            background: white;
+            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.1) !important;
+            overflow: hidden;
+        }
+
+        .create-header {
+            background: linear-gradient(45deg, #D6336C, #FF4081);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .form-label-custom {
+            color: #D6336C;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-control-custom {
+            border-radius: 12px;
+            border: 1px solid #FFE4E1;
+            padding: 12px;
+            transition: all 0.3s;
+        }
+
+            .form-control-custom:focus {
+                border-color: #D6336C;
+                box-shadow: 0 0 0 0.2rem rgba(214, 51, 108, 0.1);
+            }
+
+        .btn-create-custom {
+            background: linear-gradient(45deg, #D6336C, #FF4081);
+            color: white !important;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 40px;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+            .btn-create-custom:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(214, 51, 108, 0.3);
+            }
+
+        .image-upload-container {
+            border: 2px dashed #FFB6C1;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background-color: #FFF9FA;
+            color: #D6336C;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .image-upload-container:hover {
+                background-color: #FFE4E1;
+            }
+    </style>
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card create-card">
+                <div class="create-header">
+                    <i class="bi bi-plus-circle-fill fs-2 mb-2"></i>
+                    <h2 class="mb-0">Create New Product</h2>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+                        <div class="row">
+                            <!-- العمود الأول: المعلومات الأساسية -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Name" class="form-label-custom"></label>
+                                    <input asp-for="Name" class="form-control form-control-custom" placeholder="Enter product name" />
+                                    <span asp-validation-for="Name" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="Description" class="form-label-custom"></label>
+                                    <textarea asp-for="Description" class="form-control form-control-custom" rows="4" placeholder="Enter product description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger small"></span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label asp-for="Price" class="form-label-custom"></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;">$</span>
+                                                <input asp-for="Price" class="form-control form-control-custom border-start-0" style="border-radius: 0 12px 12px 0;" placeholder="0.00" />
+                                            </div>
+                                            <span asp-validation-for="Price" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label asp-for="StockQuantity" class="form-label-custom"></label>
+                                            <input asp-for="StockQuantity" class="form-control form-control-custom" placeholder="0" />
+                                            <span asp-validation-for="StockQuantity" class="text-danger small"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- العمود الثاني: الصور والتصنيفات -->
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="CategoryId" class="form-label-custom">Category</label>
+                                    <select asp-for="CategoryId" class="form-select form-control-custom" asp-items="ViewBag.CategoryId">
+                                        <option value="">-- Select Category --</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label asp-for="BrandId" class="form-label-custom">Brand</label>
+                                    <select asp-for="BrandId" class="form-select form-control-custom" asp-items="ViewBag.BrandId">
+                                        <option value="">-- Select Brand --</option>
+                                    </select>
+                                    <span asp-validation-for="BrandId" class="text-danger small"></span>
+                                </div>
+
+                             <div class="form-group mb-4">
+                            <label class="form-label fw-bold">Upload Image</label>
+                            <input type="file" name="ImagePath" class="form-control shadow-sm" accept="image/*" />
+                        </div
+
+                              
+                                
+                            </div>
+                        </div>
+
+                        <hr class="my-4" style="opacity: 0.1;" />
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="Index" class="text-decoration-none text-muted">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                            <div style="width: 200px;">
+                                <button type="submit" class="btn btn-create-custom">Create Product</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

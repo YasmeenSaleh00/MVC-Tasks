@@ -1,0 +1,143 @@
+﻿@model Practise_Database_Migration.Models.Category
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #FFF5F8;
+        }
+
+        .card {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(214, 51, 108, 0.1) !important;
+        }
+
+        .card-header {
+            background: linear-gradient(45deg, #D6336C, #FF4081) !important;
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            padding: 20px;
+            border: none;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #FFB6C1 !important;
+            border-radius: 12px;
+            padding: 12px 15px;
+            transition: all 0.3s;
+        }
+
+            .form-control:focus, .form-select:focus {
+                border-color: #FF4081 !important;
+                box-shadow: 0 0 0 0.25rem rgba(255, 64, 129, 0.1);
+            }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #D6336C, #FF4081) !important;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(214, 51, 108, 0.3);
+            }
+
+        .btn-outline-secondary {
+            border-radius: 12px;
+            padding: 12px 25px;
+            border: 1px solid #FFB6C1;
+            color: #D6336C;
+        }
+
+            .btn-outline-secondary:hover {
+                background-color: #FFF5F8;
+                color: #FF4081;
+                border-color: #FF4081;
+            }
+
+        .current-img-container {
+            border: 2px dashed #FFB6C1;
+            border-radius: 15px;
+            padding: 10px;
+            display: inline-block;
+            background: white;
+        }
+    </style>
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-center">
+                    <h3 class="mb-0"><i class="bi bi-pencil-square me-2"></i> Edit Category</h3>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ImagePath" />
+                        <input type="hidden" asp-for="CreationDate" />
+
+                        <div class="mb-4">
+                            <label asp-for="Name" class="form-label fw-bold text-secondary"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter category name" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-bold text-secondary"></label>
+                            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter a brief description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4 text-center">
+                            <label class="form-label d-block fw-bold text-secondary text-start">Current Category Image</label>
+                            <div class="current-img-container">
+                                <img src="~/images/Categories/@Model.ImagePath" width="150" height="150" class="rounded shadow-sm" style="object-fit: cover;" alt="Current Image" />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">Update Image (Optional)</label>
+                            <input type="file" name="NewImagePath" class="form-control" accept="image/*" />
+                            <div class="form-text mt-2"><i class="bi bi-info-circle me-1"></i> Leave empty to keep the current image.</div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label asp-for="IsDeleted" class="form-label fw-bold text-secondary">Display Status</label>
+                            <select asp-for="IsDeleted" class="form-select">
+                                <option value="false">Active</option>
+                                <option value="true">Not Active </option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                            <button type="submit" class="btn btn-primary shadow-sm flex-grow-1">
+                                <i class="bi bi-check-circle me-1"></i> Save Changes
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i> Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

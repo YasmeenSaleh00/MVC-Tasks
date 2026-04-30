@@ -1,4 +1,4 @@
-namespace Authentication___Authorization.Models
+namespace Practise_Database_Migration.Models
 {
     public class ErrorViewModel
     {

@@ -1,0 +1,190 @@
+﻿@model IEnumerable<Practise_Database_Migration.Models.Product>
+
+@{
+    ViewData["Title"] = "Products Management";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #FFF5F8;
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .table thead th {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 15px;
+            color: #D6336C;
+        }
+
+        .table tbody td {
+            padding: 15px;
+            border-bottom: 1px solid #FFF5F8;
+        }
+
+        img {
+            transition: transform 0.3s ease;
+        }
+
+            img:hover {
+                transform: scale(1.2);
+            }
+
+        .bg-success-light {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .bg-danger-light {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #D6336C, #FF4081);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(45deg, #FF4081, #D6336C);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(214, 51, 108, 0.3);
+            }
+
+        .btn-outline-primary {
+            color: #D6336C;
+            border-color: #D6336C;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #D6336C;
+                color: white;
+            }
+
+        .price-text {
+            color: #D6336C;
+            font-weight: bold;
+        }
+    </style>
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-secondary fw-bold">Products Management</h2>
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="bi bi-plus-lg"></i> Create New Product
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>Description</th>
+                            <th>@Html.DisplayNameFor(model => model.Price)</th>
+                            <th>Stock</th>
+                            <th>Category </th>
+                            <th>Brand</th>
+                            <th>Preview</th>
+                            <th>Status</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-dark">@Html.DisplayFor(modelItem => item.Name)</div>
+                                    
+                                </td>
+                                <td>
+                                    <span class="text-muted d-block " style="max-width: 150px;">
+                                        @item.Description
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="price-text">$@Html.DisplayFor(modelItem => item.Price)</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-dark border">@item.StockQuantity</span>
+                                </td>
+                                <td>
+                                    
+                                     @item.Category?.Name
+                                   
+                                   
+                                </td>
+                                <td>
+
+                                    @item.Brand?.Name
+
+
+                                </td>
+                                <td>
+                                    <img src="~/images/Products/@item.ImagePath" class="rounded-3 shadow-sm border" width="60" height="60" style="object-fit: cover;" onerror="this.src='/images/no-image.png'" />
+                                </td>
+                                <td>
+                                    @if (item.IsDeleted == true)
+                                    {
+                                        <span class="badge rounded-pill bg-danger-light text-danger">Deleted</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-success-light text-success">Active</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary mx-1 rounded">Edit</a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info mx-1 rounded">Details</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger mx-1 rounded">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var message = '@TempData["SuccessMessage"]';
+
+            if (message && message.trim() !== "") {
+                Swal.fire({
+                    title: 'Done!',
+                    text: message,
+                    icon: 'success',
+                    confirmButtonColor: '#D6336C'
+                }).then((result) => {
+                    if (result.isConfirmed || result.isDismissed) {
+
+                        @{
+                                TempData["SuccessMessage"] = null;
+                        }
+
+
+                        location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+}
