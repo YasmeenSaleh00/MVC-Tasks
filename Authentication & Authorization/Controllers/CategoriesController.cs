@@ -21,10 +21,21 @@ namespace Practise_Database_Migration.Controllers
         }
 
         // GET: Categories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? searchTerm)
         {
-            return View(await _context.Categories.ToListAsync());
+            var categoryQuery = _context.Categories
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                categoryQuery = categoryQuery.Where(p =>
+                    p.Name.Contains(searchTerm) ||
+                    p.Description.Contains(searchTerm));
+            }
+
+            return View(await categoryQuery.ToListAsync());
         }
+      
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolProject", "SchoolProj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practise Database Migration", "Authentication & Authorization\Practise Database Migration.csproj", "{C4D3288F-7E3C-12E9-2218-D48E52E5FA98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company DataBase Task", "Company DataBase Task\Company DataBase Task.csproj", "{B8104269-072E-4E18-B3B8-FCFB4A09E519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study Identity in MVC", "Study Identity in MVC\Study Identity in MVC.csproj", "{0A7DE909-FCA3-4A1B-97A5-7AEB01EAC3D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C4D3288F-7E3C-12E9-2218-D48E52E5FA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4D3288F-7E3C-12E9-2218-D48E52E5FA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4D3288F-7E3C-12E9-2218-D48E52E5FA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8104269-072E-4E18-B3B8-FCFB4A09E519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8104269-072E-4E18-B3B8-FCFB4A09E519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8104269-072E-4E18-B3B8-FCFB4A09E519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8104269-072E-4E18-B3B8-FCFB4A09E519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7DE909-FCA3-4A1B-97A5-7AEB01EAC3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7DE909-FCA3-4A1B-97A5-7AEB01EAC3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7DE909-FCA3-4A1B-97A5-7AEB01EAC3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7DE909-FCA3-4A1B-97A5-7AEB01EAC3D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
