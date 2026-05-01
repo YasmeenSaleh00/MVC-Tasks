@@ -7,5 +7,6 @@ namespace Company_DataBase_Task.Models
         [Required(ErrorMessage = "The Name Of Department Required")]
         [MaxLength(100)]
         public string Name { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }

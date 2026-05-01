@@ -14,5 +14,7 @@
         public  Employee Manager { get; set; }
         public  List<Employee> Team { get; set; }
         public List<AssignmentEmployees> AssignmentEmployees { get; set; }
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
     }
 }

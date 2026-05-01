@@ -28,6 +28,11 @@ namespace Company_DataBase_Task
                 .HasOne(e => e.Manager)      
                 .WithMany(m => m.Team)      
                 .HasForeignKey(e => e.ManagerId);
+            modelBuilder.Entity<Employee>()
+                .HasOne(e => e.Department)      
+                .WithMany(d => d.Employees)     
+                .HasForeignKey(e => e.DepartmentId);
+
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 if (typeof(MainEntity).IsAssignableFrom(entityType.ClrType) && entityType.ClrType != typeof(MainEntity))
