@@ -137,9 +137,10 @@
                                     <img src="~/images/Products/@item.ImagePath" class="rounded-3 shadow-sm border" width="60" height="60" style="object-fit: cover;" onerror="this.src='/images/no-image.png'" />
                                 </td>
                                 <td>
-                                    @if (item.IsDeleted == true)
+                                    @if (item.IsDeleted == true || item.StockQuantity == 0)
                                     {
-                                        <span class="badge rounded-pill bg-danger-light text-danger">Deleted</span>
+                                        <span class="badge rounded-pill bg-danger-light text-danger">Out Of Stock</span>
+                                     
                                     }
                                     else
                                     {
