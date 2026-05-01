@@ -62,6 +62,9 @@ namespace Practise_Database_Migration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Description,Price,StockQuantity,CategoryId,BrandId")] Product product, IFormFile ImagePath)
         {
+           
+
+
             if (ModelState.IsValid)
             {
                 if (ImagePath != null)
@@ -106,7 +109,7 @@ namespace Practise_Database_Migration.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,Price,StockQuantity,ImagePath,CategoryId,BrandId,Id,CreationDate,UpdatedDate,IsDeleted")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,Price,StockQuantity,ImagePath,CategoryId,BrandId,Id,IsDeleted")] Product product ,IFormFile? NewImagePath)
         {
             if (id != product.Id)
             {
@@ -117,8 +120,15 @@ namespace Practise_Database_Migration.Controllers
             {
                 try
                 {
+                    if (NewImagePath != null)
+                    {
+                        product.ImagePath = await FileHelper.UploadFileAsync(NewImagePath, "Products");
+                    }
                     _context.Update(product);
+                    product.UpdatedDate = DateTime.Now;
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Product updated successfully!";
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,7 +147,7 @@ namespace Practise_Database_Migration.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
-
+     
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -170,6 +180,8 @@ namespace Practise_Database_Migration.Controllers
             }
 
             await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = "Product Deleted successfully!";
+
             return RedirectToAction(nameof(Index));
         }
 

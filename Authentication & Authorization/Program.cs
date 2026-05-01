@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Practise_Database_Migration;
 
-namespace Authentication___Authorization
+namespace Practise_Database_Migration
+
 {
     public class Program
     {
