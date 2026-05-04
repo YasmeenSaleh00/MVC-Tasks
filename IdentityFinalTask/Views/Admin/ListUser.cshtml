@@ -1,0 +1,32 @@
+﻿﻿@using Microsoft.AspNetCore.Identity
+@using IdentityFinalTask.Models
+@inject UserManager<ApplicationUser> UserManager
+@model IEnumerable<IdentityFinalTask.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "ListUser";
+}
+<h1> <a asp-action="AddNewAdmin">Create New</a> </h1>
+<div class="container mt-4">
+    <h2>Registered Users</h2>
+    <table class="table table-striped border">
+        <thead class="table-dark">
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>@user.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Index" class="btn btn-secondary">Back to Dashboard</a>
+</div>

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study Identity in MVC", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication and Authorization Task", "Authentication and Authorization Task\Authentication and Authorization Task.csproj", "{5B59839B-C84E-446C-89A2-A43DDFAB4E4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityFinalTask", "IdentityFinalTask\IdentityFinalTask.csproj", "{3304E743-A468-436D-A7F3-0988253EA6C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5B59839B-C84E-446C-89A2-A43DDFAB4E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B59839B-C84E-446C-89A2-A43DDFAB4E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B59839B-C84E-446C-89A2-A43DDFAB4E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3304E743-A468-436D-A7F3-0988253EA6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3304E743-A468-436D-A7F3-0988253EA6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3304E743-A468-436D-A7F3-0988253EA6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3304E743-A468-436D-A7F3-0988253EA6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
