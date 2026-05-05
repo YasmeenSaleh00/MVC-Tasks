@@ -22,8 +22,8 @@ namespace Practise_Database_Migration.Controllers
             //using tuples
             var categories = _context.Categories.ToList();
             var brands = _context.Brands.ToList();
-            var products = _context.Products.ToList();
-            var model = new Tuple<List<Category> , List<Brand>,List<Product>>(categories, brands,products);    
+          
+            var model = new Tuple<List<Category> , List<Brand>>(categories, brands);    
             return View(model);
         }
 
