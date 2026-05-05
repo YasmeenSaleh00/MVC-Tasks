@@ -26,7 +26,20 @@ namespace Practise_Database_Migration.Controllers
             var simpleEcommarceDbContext = _context.Products.Include(p => p.Brand).Include(p => p.Category);
             return View(await simpleEcommarceDbContext.ToListAsync());
         }
-
+        [HttpGet]
+        [Route("Product/FilteredProductByCategory/{categoryId}")]
+        public async Task<IActionResult> FilteredProductByCategory(int categoryId)
+        {
+            var products = _context.Products.Include(x => x.Category).Include(x => x.Brand).Where(x => x.CategoryId == categoryId).ToList();
+            return View(products);
+        }
+        [HttpGet]
+        [Route("Product/FilteredProductByBrand/{brandId}")]
+        public async Task<IActionResult> FilteredProductByBrand(int brandId)
+        {
+            var products = _context.Products.Include(x=>x.Category).Include(x=>x.Brand).Where(x => x.BrandId == brandId).ToList();
+            return View(products);
+        }
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
